@@ -1,32 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>miWeb</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f4f4f4;
-      padding: 10px;
-    }
-    h1 { color: #333; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 10px 0; }
-    a {
-      text-decoration: none;
-      color: white;
-      background: #007BFF;
-      padding: 8px 12px;
-      border-radius: 4px;
-    }
-    a:hover { background: #0056b3; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descarga protegida</title>
+    <style>
+        /* Oculta el enlace de descarga por defecto */
+        #download-link {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <h1>Mis archivos</h1>
-  <ul>
-    <li><a href="archivos/comparativalaptops.xlsx" download="comparaLatop">Descargar comparativa</a></li>
-	
-  </ul>
+
+    <h1>Descarga de archivo</h1>
+    <p>Introduce la contraseña para acceder al archivo.</p>
+
+    <input type="password" id="password-input" placeholder="Escribe la contraseña">
+    <button onclick="checkPassword()">Acceder</button>
+
+    <p id="message"></p>
+
+    <a href="archivos/comparativalaptops.xlsx" download="comparaLatop.xlsx" id="download-link">Descargar comparativa</a>
+
+    <script>
+        function checkPassword() {
+            // Define la contraseña correcta
+            const correctPassword = "1234";
+            
+            // Obtiene el valor ingresado por el usuario
+            const userPassword = document.getElementById("password-input").value;
+            const messageElement = document.getElementById("message");
+            const downloadLink = document.getElementById("download-link");
+
+            if (userPassword === correctPassword) {
+                // Si la contraseña es correcta, muestra el enlace y un mensaje de éxito
+                messageElement.textContent = "¡Contraseña correcta! El enlace ya está disponible.";
+                downloadLink.style.display = "block"; // Muestra el enlace
+            } else {
+                // Si la contraseña es incorrecta, muestra un mensaje de error
+                messageElement.textContent = "Contraseña incorrecta. Inténtalo de nuevo.";
+                messageElement.style.color = "red";
+                downloadLink.style.display = "none"; // Asegura que el enlace esté oculto
+            }
+        }
+    </script>
+
 </body>
 </html>
